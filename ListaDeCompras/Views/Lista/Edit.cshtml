@@ -1,0 +1,10 @@
+﻿@model ListaDeCompras.Models.ListaDeCompra
+
+<h2>Editar Lista</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <label>Título</label>
+    <input asp-for="Titulo" />
+    <button type="submit">Salvar</button>
+</form>

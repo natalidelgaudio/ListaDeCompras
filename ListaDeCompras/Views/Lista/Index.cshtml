@@ -1,0 +1,52 @@
+﻿@model List<ListaDeCompras.Models.ListaDeCompra>
+
+<h2>Listas de Compras</h2>
+
+<a href="/Lista/Create">Nova Lista</a>
+
+@foreach (var lista in Model)
+{
+    <div>
+        <h3>@lista.Titulo</h3>
+        <a asp-action="Edit" asp-route-id="@lista.Id">Editar Lista</a>
+
+        <form method="post" asp-action="Delete" onsubmit="return confirm('Excluir lista e todos os itens?');" style="display:inline;">
+            <input type="hidden" name="id" value="@lista.Id" />
+            <button type="submit">Excluir</button>
+        </form>
+
+        <ul>
+            @foreach (var item in lista.Itens)
+            {
+                <li>
+                    @item.Nome - @item.Quantidade
+
+                    @if (!item.Comprado)
+                    {
+                        <form method="post" asp-action="MarcarComoComprado" style="display:inline;">
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <button type="submit">✔</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span style="color:green;">✔</span>
+                    }
+
+                    <a asp-action="EditItem" asp-route-id="@item.Id">✏️</a>
+
+                    <form method="post" asp-action="DeleteItem" style="display:inline;" onsubmit="return confirm('Excluir item?');">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit">🗑️</button>
+                    </form>
+                </li>
+            }
+        </ul>
+        <form method="post" asp-action="AddItem">
+            <input type="hidden" name="listaId" value="@lista.Id" />
+            <input type="text" name="nome" placeholder="Item" required />
+            <input type="number" name="quantidade" placeholder="Qtd" required />
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
+}

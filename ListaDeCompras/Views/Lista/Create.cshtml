@@ -1,0 +1,11 @@
+﻿@model ListaDeCompras.Models.ListaDeCompra
+
+<h2>Criar nova lista</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Título</label>
+        <input asp-for="Titulo" />
+    </div>
+    <button type="submit">Salvar</button>
+</form>

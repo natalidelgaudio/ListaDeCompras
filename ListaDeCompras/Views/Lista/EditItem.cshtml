@@ -1,0 +1,22 @@
+﻿@model ListaDeCompras.Models.Item
+
+<h2>Editar Item</h2>
+
+<form asp-action="EditItem" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ListaDeCompraId" />
+
+    <div>
+        <label>Nome</label>
+        <input asp-for="Nome" />
+    </div>
+    <div>
+        <label>Quantidade</label>
+        <input asp-for="Quantidade" type="number" />
+    </div>
+    <div>
+        <label>Comprado</label>
+        <input asp-for="Comprado" type="checkbox" />
+    </div>
+    <button type="submit">Salvar</button>
+</form>
